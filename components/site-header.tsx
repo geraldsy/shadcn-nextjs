@@ -1,49 +1,74 @@
+"use client"
+
+import { useState } from "react"
 import Link from "next/link"
+import { Avatar, AvatarFallback, AvatarImage } from "components/ui/avatar"
 
 import { siteConfig } from "@/config/site"
-import { buttonVariants } from "@/components/ui/button"
+import { Button, buttonVariants } from "@/components/ui/button"
+import {
+  Command,
+  CommandDialog,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+  CommandSeparator,
+  CommandShortcut,
+} from "@/components/ui/command"
+import { Input } from "@/components/ui/input"
 import { Icons } from "@/components/icons"
-import { MainNav } from "@/components/main-nav"
 import { ThemeToggle } from "@/components/theme-toggle"
 
-export function SiteHeader() {
+import { CommandDemo } from "./command-demo"
+import { ProfileInfo } from "./profile-info"
+
+export function SiteHeader({ toggleHidden }) {
+  const [isOpen, setisOpen] = useState()
+
   return (
     <header className="sticky top-0 z-40 w-full border-b bg-background">
-      <div className="container flex h-16 items-center space-x-4 sm:justify-between sm:space-x-0">
-        <MainNav items={siteConfig.mainNav} />
-        <div className="flex flex-1 items-center justify-end space-x-4">
-          <nav className="flex items-center space-x-1">
-            <Link
-              href={siteConfig.links.github}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <div
-                className={buttonVariants({
-                  size: "sm",
-                  variant: "ghost",
-                })}
-              >
-                <Icons.gitHub className="h-5 w-5" />
-                <span className="sr-only">GitHub</span>
-              </div>
+      <div className="flex items-center h-16 space-x-4 sm:justify-between sm:space-x-0">
+        <nav className="flex items-center w-full space-x-2 lg:w-1/2 ">
+          <div className="flex space-x-2 w-[180px]">
+            {/* hamburger menu */}
+            <Button variant="ghost" size="sm" onClick={toggleHidden} className="sm:hidden">
+              <Icons.menu className="w-5 h-5" />
+              <span className="sr-only">Menu</span>
+            </Button>
+            {/* govph */}
+            <Link href="/" className="flex items-center space-x-2 sm:px-2">
+              <Icons.logo className="w-6 h-6" />
+              <span className="inline-block font-bold">{siteConfig.name}</span>
             </Link>
-            <Link
-              href={siteConfig.links.twitter}
-              target="_blank"
-              rel="noreferrer"
-            >
+          </div>
+          <div className="hidden w-full w-xs sm:flex">
+            {/* search */}
+            <CommandDemo />
+          </div>
+        </nav>
+        <div className="flex items-center justify-end flex-1 space-x-4">
+          <nav className="flex items-center space-x-1">
+            <div className="sm:hidden">
+              <Button variant="ghost" size="sm" onClick={() => handleClick()}>
+                <Icons.search className="w-5 h-5" />
+                <span className="sr-only">Search</span>
+              </Button>
+            </div>
+            <Link href={siteConfig.links.egov} target="_blank" rel="noreferrer">
               <div
                 className={buttonVariants({
                   size: "sm",
                   variant: "ghost",
                 })}
               >
-                <Icons.twitter className="h-5 w-5 fill-current" />
-                <span className="sr-only">Twitter</span>
+                <Icons.Building2 className="w-5 h-5 " />
+                <span className="sr-only">eGov</span>
               </div>
             </Link>
             <ThemeToggle />
+            <ProfileInfo />
           </nav>
         </div>
       </div>
