@@ -31,7 +31,7 @@ export function SiteHeader({ toggleHidden }) {
     <header className="sticky top-0 z-40 w-full border-b bg-background">
       <div className="flex items-center h-16 space-x-4 sm:justify-between sm:space-x-0">
         <nav className="flex items-center w-full space-x-2 lg:w-1/2 ">
-          <div className="flex space-x-2 w-[180px]">
+          <div className="flex space-x-2 w-[180px] ml-1">
             {/* hamburger menu */}
             <Button variant="ghost" size="sm" onClick={toggleHidden} className="sm:hidden">
               <Icons.menu className="w-5 h-5" />
