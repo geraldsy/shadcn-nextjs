@@ -24,7 +24,11 @@ import { ThemeToggle } from "@/components/theme-toggle"
 import { CommandDemo } from "./command-demo"
 import { ProfileInfo } from "./profile-info"
 
-export function SiteHeader({ toggleHidden }) {
+type SiteHeaderProps = {
+  toggleHidden: () => void
+}
+
+export const SiteHeader: React.FC<SiteHeaderProps> = ({ toggleHidden }) => {
   const [isOpen, setisOpen] = useState()
 
   return (
@@ -51,7 +55,7 @@ export function SiteHeader({ toggleHidden }) {
         <div className="flex items-center justify-end flex-1 space-x-4">
           <nav className="flex items-center space-x-1">
             <div className="sm:hidden">
-              <Button variant="ghost" size="sm" onClick={() => handleClick()}>
+              <Button variant="ghost" size="sm">
                 <Icons.search className="w-5 h-5" />
                 <span className="sr-only">Search</span>
               </Button>

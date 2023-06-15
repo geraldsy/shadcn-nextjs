@@ -36,10 +36,11 @@ interface RootLayoutProps {
 export default function RootLayout({ children }: RootLayoutProps) {
   const [isHidden, setIsHidden] = useState(true)
 
-  const toggleHidden = () => {
+  const toggleHidden: () => void = () => {
     setIsHidden(!isHidden)
     console.log(isHidden)
   }
+
   return (
     <>
       <html lang="en" suppressHydrationWarning>
