@@ -1,9 +1,28 @@
+"use client"
+
+import { useEffect, useState } from "react"
 import Link from "next/link"
+import { Calculator, Mail } from "lucide-react"
 
 import { siteConfig } from "@/config/site"
-import { buttonVariants } from "@/components/ui/button"
+import { Badge } from "@/components/ui/badge"
+import { Button, buttonVariants } from "@/components/ui/button"
+import { AccordionDemo } from "@/components/accordion-demo"
+import { AlertDemo } from "@/components/alert-demo"
+import { AlertDestructive } from "@/components/alert-destructive"
+import { AlertDialogDemo } from "@/components/alert-dialog"
+import CalculatorDemo from "@/components/calculator-demo"
+import { CalendarDemo } from "@/components/calendar-demo"
 
 export default function IndexPage() {
+  const [selectedDate, setSelectedDate] = useState<Date | undefined>(new Date())
+
+  const [calculatorSum, setCalculatorSum] = useState(0)
+
+  const handleDateSelect = (date: Date | undefined) => {
+    setSelectedDate(date)
+  }
+
   return (
     <section className="grid items-center gap-6 p-5 pt-6 pb-8 md:py-10">
       <div className="flex max-w-[980px] flex-col items-start gap-2">
@@ -33,6 +52,25 @@ export default function IndexPage() {
         >
           GitHub
         </Link>
+      </div>
+      <div>
+        <CalculatorDemo _setCalculatorSum={setCalculatorSum} />
+        <p>The value is {calculatorSum} </p>
+
+        <CalendarDemo _setSelectedDate={setSelectedDate} />
+        <p>Selected Date: {selectedDate?.toLocaleDateString()}</p>
+
+        <AccordionDemo />
+        <AlertDemo />
+        <AlertDestructive />
+        <AlertDialogDemo />
+        <Badge variant="destructive">Test Badge</Badge>
+        <Link href="/" className={buttonVariants({ variant: "outline" })}>
+          Click here
+        </Link>
+        <Button>
+          <Mail className="w-4 h-4 mr-2" /> Login with Email
+        </Button>
       </div>
     </section>
   )

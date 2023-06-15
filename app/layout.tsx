@@ -50,7 +50,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
             <div className="relative flex flex-col min-h-screen">
               <SiteHeader toggleHidden={toggleHidden} />
               <div className="flex ">
-                <div className={`  sm:flex ${isHidden ? "hidden" : ""}`}>
+                <div className={`transition-all  sm:flex ${isHidden ? "hidden" : ""}`}>
                   <SideNav items={siteConfig.sideNav} />
                 </div>
                 <div className="flex-1">{children}</div>
