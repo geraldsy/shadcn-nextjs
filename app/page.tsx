@@ -7,19 +7,24 @@ import { Calculator, Mail } from "lucide-react"
 import { siteConfig } from "@/config/site"
 import { Badge } from "@/components/ui/badge"
 import { Button, buttonVariants } from "@/components/ui/button"
+import { ComboboxDemo } from "@/components/ui/combobox-demo"
 import { AccordionDemo } from "@/components/accordion-demo"
 import { AlertDemo } from "@/components/alert-demo"
 import { AlertDestructive } from "@/components/alert-destructive"
 import { AlertDialogDemo } from "@/components/alert-dialog"
 import CalculatorDemo from "@/components/calculator-demo"
 import { CalendarDemo } from "@/components/calendar-demo"
+import { CardDemo } from "@/components/card-demo"
+import { CardWithForm } from "@/components/card-form"
+import { CheckboxWithText } from "@/components/checkbox-text"
+import { CollapsibleDemo } from "@/components/collapsible-demo"
 
 export default function IndexPage() {
-  const [selectedDate, setSelectedDate] = useState<Date | undefined>(new Date())
+  const [selectedDate, setSelectedDate] = useState(new Date())
 
   const [calculatorSum, setCalculatorSum] = useState(0)
 
-  const handleDateSelect = (date: Date | undefined) => {
+  const handleDateSelect = (date: Date) => {
     setSelectedDate(date)
   }
 
@@ -54,6 +59,11 @@ export default function IndexPage() {
         </Link>
       </div>
       <div>
+        <ComboboxDemo />
+        <CollapsibleDemo />
+        <CheckboxWithText />
+        <CardWithForm />
+        <CardDemo />
         <CalculatorDemo _setCalculatorSum={setCalculatorSum} />
         <p>The value is {calculatorSum} </p>
 
